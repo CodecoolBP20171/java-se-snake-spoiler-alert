@@ -47,11 +47,11 @@ public class BabyFaceEnemy extends GameEntity implements Animatable, Interactabl
     @Override
     public void apply(SnakeHead snakeHead) {
         destroy();
-        snakeHead.setImage(null);
+        snakeHead.setImage(Globals.invisibleSnake);
 
         for (GameEntity entity : Globals.getGameObjects()) {
             if (entity instanceof SnakeBody) {
-                entity.setImage(null);
+                entity.setImage(Globals.invisibleSnake);
             }
         }
         new java.util.Timer().schedule(
