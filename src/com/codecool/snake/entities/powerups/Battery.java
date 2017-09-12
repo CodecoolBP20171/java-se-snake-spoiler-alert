@@ -22,6 +22,7 @@ public class Battery extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
+        snakeHead.changeLaserCharge(1);
         destroy();
     }
 
