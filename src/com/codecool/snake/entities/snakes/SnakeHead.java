@@ -7,6 +7,8 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.*;
+import javafx.scene.paint.Color;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -14,6 +16,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
+    private Text healthDisplay;
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -23,8 +26,16 @@ public class SnakeHead extends GameEntity implements Animatable {
         tail = this;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
+        initHealthDisplay(pane);
 
         addPart(4);
+    }
+
+    private void initHealthDisplay(Pane pane) {
+        healthDisplay = new Text(10,30, "");
+        healthDisplay.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        healthDisplay.setFill(Color.GREEN);
+        pane.getChildren().add(healthDisplay);
     }
 
     public void step() {
@@ -40,6 +51,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         Point2D heading = Utils.directionToVector(dir, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
+
+        healthDisplay.setText("HP: " + String.valueOf(health));
 
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
