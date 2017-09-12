@@ -1,6 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.powerups.HealPowerup;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.powerups.Battery;
 import com.codecool.snake.entities.snakes.SnakeHead;
@@ -23,6 +24,8 @@ public class Game extends Pane {
         new SimplePowerup(this);
 
         new Battery(this);
+
+        new HealPowerup(this);
     }
 
     public void start() {
