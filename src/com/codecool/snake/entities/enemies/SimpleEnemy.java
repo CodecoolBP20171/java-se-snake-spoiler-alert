@@ -7,7 +7,6 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
 import java.util.Random;
@@ -27,7 +26,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
         //make sure they don't spawn on the player
         Random rnd = new Random();
-        SnakeHead player = getSnakeHead();
+        SnakeHead player = Globals.snakeHeadEntity;
         do {
             setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
             setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
@@ -56,15 +55,5 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     @Override
     public String getMessage() {
         return "10 damage";
-    }
-
-    private SnakeHead getSnakeHead() {
-        for (Node entity : pane.getChildren()) {
-            if (entity instanceof SnakeHead) {
-                SnakeHead player = (SnakeHead) entity;
-                return player;
-            }
-        }
-        return null;
     }
 }
