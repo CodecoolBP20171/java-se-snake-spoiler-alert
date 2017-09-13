@@ -20,7 +20,11 @@ public class Globals {
     public static Image powerupBerry = new Image("powerup_berry.png");
     public static Image babyFaceEnemy = new Image("babyface.png");
     public static Image invisibleSnake = new Image("invisiblesnake.png");
+    public static Image followEnemy = new Image("enemy_follow.png");
+
     //.. put here the other images you want to use
+
+    public static SnakeHead snakeHeadEntity;
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;

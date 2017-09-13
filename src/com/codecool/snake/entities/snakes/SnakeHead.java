@@ -26,6 +26,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         pane.getChildren().add(this);
 
         addPart(4);
+
+        Globals.snakeHeadEntity = this;
     }
 
     public void step() {
@@ -69,5 +71,9 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void changeHealth(int diff) {
         health += diff;
+    }
+
+    public Point2D getPlace() {
+        return new Point2D(getX(),getY());
     }
 }
