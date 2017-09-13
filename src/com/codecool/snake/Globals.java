@@ -2,6 +2,7 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 
 import java.util.Collections;

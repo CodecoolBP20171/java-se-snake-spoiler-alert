@@ -24,17 +24,26 @@ public class Game extends Pane {
 
     public void start() {
         Scene scene = getScene();
+
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case LEFT:  Globals.leftKeyDown  = true; break;
-                case RIGHT: Globals.rightKeyDown  = true; break;
+                case LEFT:
+                    Globals.leftKeyDown = true;
+                    break;
+                case RIGHT:
+                    Globals.rightKeyDown = true;
+                    break;
             }
         });
 
         scene.setOnKeyReleased(event -> {
             switch (event.getCode()) {
-                case LEFT:  Globals.leftKeyDown  = false; break;
-                case RIGHT: Globals.rightKeyDown  = false; break;
+                case LEFT:
+                    Globals.leftKeyDown = false;
+                    break;
+                case RIGHT:
+                    Globals.rightKeyDown = false;
+                    break;
             }
         });
         Globals.gameLoop = new GameLoop();
