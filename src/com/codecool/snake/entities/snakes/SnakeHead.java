@@ -59,6 +59,9 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
+            health = 0;
+            drawHealthDisplay();
+
             System.out.println("Game Over");
             Globals.gameLoop.stop();
         }
@@ -77,10 +80,19 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     private void drawHealthDisplay() {
+
+        //TODO greyed out hearts or something so we can see max health.
+
         clearHealthDisplay();
-        for (int i = 1; i <= health / 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             ImageView healthBit = new ImageView();
-            healthBit.setImage(Globals.healthUnit);
+
+            if (i <= health / 10) {
+                healthBit.setImage(Globals.healthUnit);
+            }
+            else {
+                healthBit.setImage(Globals.healthEmpty);
+            }
             healthBit.setX(i * 20);
             healthBit.setY(20);
             pane.getChildren().add(healthBit);
