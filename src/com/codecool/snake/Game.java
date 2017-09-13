@@ -8,8 +8,10 @@ import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
 
+    SnakeHead player;
+
     public Game() {
-        new SnakeHead(this, 500, 500);
+        player = new SnakeHead(this, 500, 500);
 
         new SimpleEnemy(this);
         new SimpleEnemy(this);
@@ -28,6 +30,7 @@ public class Game extends Pane {
             switch (event.getCode()) {
                 case LEFT:  Globals.leftKeyDown  = true; break;
                 case RIGHT: Globals.rightKeyDown  = true; break;
+                case SPACE: player.shoot(); break;
             }
         });
 
