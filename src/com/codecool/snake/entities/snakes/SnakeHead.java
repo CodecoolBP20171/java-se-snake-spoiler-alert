@@ -1,16 +1,22 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.GameOverEvent;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import javafx.event.EventType;
 import com.codecool.snake.entities.Laser;
 import com.codecool.snake.entities.enemies.BabyFaceEnemy;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 public class SnakeHead extends GameEntity implements Animatable {
@@ -20,6 +26,8 @@ public class SnakeHead extends GameEntity implements Animatable {
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
     private int laserCharge;
+
+    private EventType<GameOverEvent> GAME_OVER = new EventType<>("GAME OVER");
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -33,7 +41,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         drawHealthDisplay();
 
         addPart(4);
-
+        addGameOverHandler();
         Globals.snakeHeadEntity = this;
     }
 
@@ -65,11 +73,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
-            health = 0;
-            drawHealthDisplay();
-
-            System.out.println("Game Over");
-            Globals.gameLoop.stop();
+            this.fireEvent(new GameOverEvent(GAME_OVER));
         }
     }
 
@@ -133,5 +137,35 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public int getLaserCharge() {
         return laserCharge;
+    }
+
+    private void addGameOverHandler() {
+        getParent().addEventHandler(GAME_OVER, event -> {
+            System.out.println("Game Over");
+            Globals.gameLoop.stop();
+            int length = getSnakeLength();
+            Globals.gameObjects.clear();
+            displayGameOverMessage(length);
+        });
+    }
+
+    private int getSnakeLength() {
+        int length = 1;
+
+        for (GameEntity entity : Globals.gameObjects) {
+            if (entity instanceof SnakeBody)
+                length++;
+        }
+
+        return length;
+    }
+
+    private void displayGameOverMessage(int length) {
+        Text gameOverText = new Text(210, 300, "           GAME OVER!\nYour snake's final length is \n" +
+                                                         "                " + length + " parts.");
+        gameOverText.setFont(Font.font("Verdana", FontWeight.BOLD, 35));
+        gameOverText.setFill(Color.RED);
+        pane.getChildren().clear();
+        pane.getChildren().add(gameOverText);
     }
 }
