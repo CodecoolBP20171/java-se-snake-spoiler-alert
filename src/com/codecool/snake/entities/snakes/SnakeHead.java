@@ -5,6 +5,7 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.BabyFaceEnemy;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -29,6 +30,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         drawHealthDisplay();
 
         addPart(4);
+
+        Globals.snakeHeadEntity = this;
     }
 
     public void step() {
@@ -108,5 +111,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         for (Node healthBit : toRemove) {
             pane.getChildren().remove(healthBit);
         }
+    }
+
+    public Point2D getPlace() {
+        return new Point2D(getX(),getY());
     }
 }
