@@ -5,29 +5,31 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.layout.Pane;
 
 
-// a simple powerup that makes the snake grow
-public class SimplePowerup extends Powerup {
+//a powerup that adds laser ammunition
+public class Battery extends Powerup {
 
-    public SimplePowerup(Pane pane) {
+    public static final int RESPAWNRATE = 2;
+
+    public Battery(Pane pane) {
         super(pane);
-        setImage(Globals.powerupBerry);
-        Globals.isThereBerry = true;
+        setImage(Globals.powerupBattery);
+        Globals.isTherePowerUp = true;
     }
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.addPart(4);
+        snakeHead.changeLaserCharge(1);
         destroy();
     }
 
     @Override
     public String getMessage() {
-        return "Got power-up :)";
+        return "Got laser charge :)";
     }
 
     @Override
     public void destroy() {
-        Globals.isThereBerry = false;
+        Globals.isTherePowerUp = false;
         super.destroy();
     }
 }

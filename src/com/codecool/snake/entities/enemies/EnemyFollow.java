@@ -1,17 +1,19 @@
 package com.codecool.snake.entities.enemies;
 
 import com.codecool.snake.Globals;
+import com.codecool.snake.Utils;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
 
-public class SimpleEnemy extends Enemy {
+public class EnemyFollow extends Enemy {
 
-    public static final int RESPAWNRATE = 3;
+    public static final int RESPAWNRATE = 2;
 
-    public SimpleEnemy(Pane pane) {
+    public EnemyFollow(Pane pane) {
         super(pane);
-        setImage(Globals.simpleEnemy);
+        setImage(Globals.followEnemy);
     }
 
     @Override
@@ -19,6 +21,10 @@ public class SimpleEnemy extends Enemy {
         if (isOutOfBounds()) {
             destroy();
         }
+
+        int direction = Utils.coordinatesToDirection(new Point2D(getX(), getY()), Globals.snakeHeadEntity.getPlace() );
+        heading = Utils.headingVectorFromCoords(new Point2D(getX(), getY()), Globals.snakeHeadEntity.getPlace(), speed);
+        setRotate(direction);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }
@@ -33,4 +39,5 @@ public class SimpleEnemy extends Enemy {
     public String getMessage() {
         return "10 damage";
     }
+
 }
