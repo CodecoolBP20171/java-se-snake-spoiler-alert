@@ -28,14 +28,11 @@ public class Game extends Pane {
         new BabyFaceEnemy(this);
         new BabyFaceEnemy(this);
         new BabyFaceEnemy(this);
+        new EnemyFollow(this);
 
         new SimplePowerup(this);
-        
-        new Battery(this);
 
-        new HealPowerup(this);
-
-        new EnemyFollow(this);
+        Globals.isTherePowerUp = false;
     }
 
     public void start() {
@@ -55,6 +52,7 @@ public class Game extends Pane {
                 case RIGHT: Globals.rightKeyDown  = false; break;
             }
         });
+
         initSpawnGameObjects();
         Globals.gameLoop = new GameLoop();
         Globals.gameLoop.start();

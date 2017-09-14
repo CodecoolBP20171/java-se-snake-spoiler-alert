@@ -10,6 +10,8 @@ import java.util.Random;
 
 public class Battery extends GameEntity implements Interactable {
 
+    public static final int RESPAWNRATE = 2;
+
     public Battery(Pane pane) {
         super(pane);
         setImage(Globals.powerupBattery);
@@ -18,6 +20,9 @@ public class Battery extends GameEntity implements Interactable {
         Random rnd = new Random();
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+
+        Globals.isTherePowerUp = true;
+
     }
 
     @Override
@@ -29,5 +34,11 @@ public class Battery extends GameEntity implements Interactable {
     @Override
     public String getMessage() {
         return "Got laser charge :)";
+    }
+
+    @Override
+    public void destroy() {
+        Globals.isTherePowerUp = false;
+        super.destroy();
     }
 }

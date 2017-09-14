@@ -42,6 +42,7 @@ public class Globals {
     public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
     public static GameLoop gameLoop;
     public static boolean isThereBerry;
+    public static boolean isTherePowerUp;
 
     public static Pane pane;
 

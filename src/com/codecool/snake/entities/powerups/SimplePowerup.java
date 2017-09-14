@@ -26,12 +26,17 @@ public class SimplePowerup extends GameEntity implements Interactable {
     @Override
     public void apply(SnakeHead snakeHead) {
         snakeHead.addPart(4);
-        Globals.isThereBerry = false;
         destroy();
     }
 
     @Override
     public String getMessage() {
         return "Got power-up :)";
+    }
+
+    @Override
+    public void destroy() {
+        Globals.isThereBerry = false;
+        super.destroy();
     }
 }
