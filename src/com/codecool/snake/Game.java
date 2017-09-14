@@ -47,7 +47,7 @@ public class Game extends Pane {
             switch (event.getCode()) {
                 case LEFT:  Globals.leftKeyDown  = true; break;
                 case RIGHT: Globals.rightKeyDown  = true; break;
-                //case R: restart(); break;
+                case R: restart(); break;
                 case SPACE: Globals.snakeHeadEntity.shoot(); break;
             }
         });
@@ -63,13 +63,13 @@ public class Game extends Pane {
         Globals.gameLoop.start();
     }
 
-    /*public void restart() {
+    public void restart() {
         for (GameEntity gameObject : Globals.getGameObjects()) {
             gameObject.destroy();
         }
         this.getChildren().clear();
         Globals.gameLoop.stop();
         start();
-    }*/
+    }
 
 }

@@ -33,7 +33,10 @@ public class Main extends Application {
         fileMenu.getItems().add(helpMenuItem);
         fileMenu.getItems().add(exitMenuItem);
         exitMenuItem.setOnAction(actionEvent -> Platform.exit());
-        newGameItem.setOnAction(actionEvent -> game.start());
+        newGameItem.setOnAction(actionEvent -> {
+            Globals.gameObjects.clear();
+            game.start();
+        });
 
         menuBar.getMenus().addAll(fileMenu);
         primaryStage.setScene(scene);
