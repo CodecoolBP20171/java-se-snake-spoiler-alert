@@ -10,7 +10,6 @@ import javafx.scene.layout.Pane;
 
 public class BabyFaceEnemy extends Enemy {
 
-
     public BabyFaceEnemy(Pane pane) {
         super(pane);
         setImage(Globals.babyFaceEnemy);
