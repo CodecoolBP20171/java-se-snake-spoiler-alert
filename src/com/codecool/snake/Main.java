@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    static Game game = new Game();
+    private static Game game = new Game();
 
     public static void main(String[] args) {
         launch(args);
@@ -31,14 +31,16 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    public void showMenu(){
+    private void showMenu(){
         Menu fileMenu = new Menu("File");
         MenuItem newGameItem = new MenuItem("New game");
         MenuItem helpMenuItem = new MenuItem("Help");
         MenuItem exitMenuItem = new MenuItem("Exit");
+
         fileMenu.getItems().add(newGameItem);
         fileMenu.getItems().add(helpMenuItem);
         fileMenu.getItems().add(exitMenuItem);
+
         game.getChildren().add(Globals.menuBar);
         helpMenuItem.setOnAction(event -> helpAction());
         exitMenuItem.setOnAction(actionEvent -> Platform.exit());
@@ -53,16 +55,19 @@ public class Main extends Application {
         Button ok = new Button("I got it!");
         if (Globals.gameLoop != null) Globals.gameLoop.stop();
         final Stage dialog = new Stage();
+
         dialog.initModality(Modality.APPLICATION_MODAL);
         VBox dialogVbox = new VBox(20);
         Text controls = new Text(("Controls:"));
         Text description = new Text(("Turn Right: Right arrow \n" +
                 "Turn left: Left arrow \nShoot: Space \nRestart game: R"));
         controls.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+
         dialogVbox.getChildren().add(controls);
         dialogVbox.getChildren().add(description);
         dialogVbox.getChildren().add(ok);
         ok.setOnAction(actionEvent -> dialog.close() );
+
         Scene dialogScene = new Scene(dialogVbox, 300, 200);
         dialog.setScene(dialogScene);
         dialog.show();

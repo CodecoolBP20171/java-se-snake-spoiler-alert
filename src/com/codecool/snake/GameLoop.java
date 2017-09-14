@@ -15,8 +15,8 @@ import java.util.Random;
 
 public class GameLoop extends AnimationTimer {
 
-    public static final int POWERUP_DELAY = 1200;
-    public static final int ENEMY_DELAY = 600;
+    private static final int POWERUP_DELAY = 1200;
+    private static final int ENEMY_DELAY = 600;
 
     @Override
     public void handle(long now) {
@@ -34,7 +34,7 @@ public class GameLoop extends AnimationTimer {
         Globals.oldGameObjects.clear();
     }
 
-    public void spawnGameObjects() {
+    private void spawnGameObjects() {
         Pane pane = Globals.pane;
         if (!Globals.isThereBerry) {
             new SimplePowerup(pane);
@@ -59,8 +59,5 @@ public class GameLoop extends AnimationTimer {
             int randInt = random.nextInt(ENEMY_DELAY);
             if (randInt < BabyFaceEnemy.RESPAWNRATE) new BabyFaceEnemy(pane);
         }
-
-
     }
-
 }

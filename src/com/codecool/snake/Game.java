@@ -1,31 +1,23 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.enemies.BabyFaceEnemy;
-import com.codecool.snake.entities.enemies.EnemyFollow;
-import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.HealPowerup;
 import com.codecool.snake.entities.powerups.SimplePowerup;
-import com.codecool.snake.entities.powerups.Battery;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
 
-public class Game extends Pane {
-    public Game() {
+class Game extends Pane {
+    Game() {
         Globals.pane = this;
-
     }
 
-    public void initSpawnGameObjects() {
+    private void initSpawnGameObjects() {
         new SnakeHead(this, 500, 500);
         new SimplePowerup(this);
         Globals.isTherePowerUp = false;
     }
 
-    public void start() {
+    void start() {
         Scene scene = getScene();
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
@@ -48,7 +40,7 @@ public class Game extends Pane {
         Globals.gameLoop.start();
     }
 
-    public void restart() {
+    void restart() {
         for (GameEntity gameObject : Globals.getGameObjects()) {
             gameObject.destroy();
         }
@@ -57,7 +49,5 @@ public class Game extends Pane {
         getChildren().add(Globals.menuBar);
         start();
     }
-
-
 
 }
