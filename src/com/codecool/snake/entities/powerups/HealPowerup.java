@@ -6,10 +6,9 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.layout.Pane;
 
-import java.util.Random;
 
 // a powerup that restores 10 health
-public class HealPowerup extends GameEntity implements Interactable {
+public class HealPowerup extends Powerup {
 
     public static final int RESPAWNRATE = 2;
 
