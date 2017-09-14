@@ -1,40 +1,17 @@
 package com.codecool.snake.entities.enemies;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
-import com.codecool.snake.entities.Animatable;
-import com.codecool.snake.Utils;
-import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
-import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 
-import java.util.Random;
 
-// a simple enemy TODO make better ones.
-public class SimpleEnemy extends GameEntity implements Animatable, Interactable {
+public class SimpleEnemy extends Enemy {
 
-    private Point2D heading;
-    private static final int damage = 10;
+    public static final int RESPAWNRATE = 3;
 
     public SimpleEnemy(Pane pane) {
         super(pane);
-
         setImage(Globals.simpleEnemy);
-        pane.getChildren().add(this);
-        int speed = 1;
-
-        //make sure they don't spawn on the player
-        Random rnd = new Random();
-        SnakeHead player = Globals.snakeHeadEntity;
-        do {
-            setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-            setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-        } while (getBoundsInParent().intersects(player.getBoundsInParent()));
-
-        double direction = rnd.nextDouble() * 360;
-        setRotate(direction);
-        heading = Utils.directionToVector(direction, speed);
     }
 
     @Override
