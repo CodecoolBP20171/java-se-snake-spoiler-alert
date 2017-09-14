@@ -3,7 +3,6 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.image.Image;
-
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,11 +17,18 @@ public class Globals {
     public static Image snakeBody = new Image("snake_body.png");
     public static Image simpleEnemy = new Image("simple_enemy.png");
     public static Image powerupBerry = new Image("powerup_berry.png");
+
+    public static Image powerupHeal = new Image("powerup_heal.png");
+    public static Image powerupBattery = new Image("powerup_battery.png");
+
+    public static Image healthUnit = new Image("heart.png");
+    public static Image healthEmpty = new Image("heart_empty.png");
     public static Image babyFaceEnemy = new Image("babyface.png");
     public static Image invisibleSnake = new Image("invisiblesnake.png");
     public static Image followEnemy = new Image("enemy_follow.png");
 
     //.. put here the other images you want to use
+    public static Image laser = new Image("laser.png");
 
     public static SnakeHead snakeHeadEntity;
 
@@ -50,4 +56,5 @@ public class Globals {
     public static List<GameEntity> getGameObjects() {
         return Collections.unmodifiableList(gameObjects);
     }
+
 }
