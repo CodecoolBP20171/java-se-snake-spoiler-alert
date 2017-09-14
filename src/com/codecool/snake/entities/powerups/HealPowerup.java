@@ -15,7 +15,8 @@ public class HealPowerup extends Powerup {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.changeHealth(10);
+        if (snakeHead.getHealth() < 100)
+            snakeHead.changeHealth(10);
         destroy();
     }
 
