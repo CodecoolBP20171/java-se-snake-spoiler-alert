@@ -7,6 +7,8 @@ import javafx.scene.layout.Pane;
 
 public class SimpleEnemy extends Enemy {
 
+    public static final int RESPAWNRATE = 3;
+
     public SimpleEnemy(Pane pane) {
         super(pane);
         setImage(Globals.simpleEnemy);

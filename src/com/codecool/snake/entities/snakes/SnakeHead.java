@@ -119,4 +119,5 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
         return length;
     }
+
 }

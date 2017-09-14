@@ -18,7 +18,6 @@ public abstract class Enemy extends GameEntity implements Animatable, Interactab
     protected static final int damage = 10;
     protected static final int speed = 1;
     protected double direction;
-    //int spawnrate?
 
     public Enemy(Pane pane) {
         super(pane);
