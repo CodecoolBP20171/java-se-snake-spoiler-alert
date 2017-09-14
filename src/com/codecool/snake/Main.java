@@ -6,7 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -23,6 +24,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        setBackground("snake.jpg");
         primaryStage.setTitle("Snake Game");
         Scene scene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
         Globals.menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
@@ -43,6 +45,7 @@ public class Main extends Application {
         helpMenuItem.setOnAction(event -> helpAction());
         exitMenuItem.setOnAction(actionEvent -> Platform.exit());
         newGameItem.setOnAction(actionEvent -> {
+            setBackground("snake2.jpg");
             if (Globals.gameLoop == null) game.start();
             else game.restart();
         });
@@ -66,5 +69,12 @@ public class Main extends Application {
         Scene dialogScene = new Scene(dialogVbox, 300, 200);
         dialog.setScene(dialogScene);
         dialog.show();
+    }
+
+    private void setBackground(String image){
+        BackgroundImage myBI= new BackgroundImage(new Image(image,Globals.WINDOW_WIDTH,Globals.WINDOW_HEIGHT,false,true),
+        BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundSize.DEFAULT);
+        game.setBackground(new Background(myBI));
     }
 }
