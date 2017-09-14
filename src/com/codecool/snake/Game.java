@@ -8,7 +8,9 @@ import com.codecool.snake.entities.powerups.HealPowerup;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.powerups.Battery;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
@@ -52,6 +54,7 @@ public class Game extends Pane {
         }
         this.getChildren().clear();
         Globals.gameLoop.stop();
+        getChildren().add(Globals.menuBar);
         start();
     }
 
