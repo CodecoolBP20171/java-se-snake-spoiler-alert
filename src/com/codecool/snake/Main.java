@@ -1,10 +1,20 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.GameEntity;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+    static Game game = new Game();
 
     public static void main(String[] args) {
         launch(args);
@@ -12,12 +22,28 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Game game = new Game();
-
         primaryStage.setTitle("Snake Game");
-        primaryStage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        Scene scene = new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
+        Globals.menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
+        primaryStage.setScene(scene);
+        showMenu();
         primaryStage.show();
-        game.start();
     }
 
+    public void showMenu(){
+        Menu fileMenu = new Menu("File");
+        MenuItem newGameItem = new MenuItem("New game");
+        MenuItem helpMenuItem = new MenuItem("Help");
+        MenuItem exitMenuItem = new MenuItem("Exit");
+        fileMenu.getItems().add(newGameItem);
+        fileMenu.getItems().add(helpMenuItem);
+        fileMenu.getItems().add(exitMenuItem);
+        game.getChildren().add(Globals.menuBar);
+        exitMenuItem.setOnAction(actionEvent -> Platform.exit());
+        newGameItem.setOnAction(actionEvent -> {
+            if (Globals.gameLoop == null) game.start();
+            else game.restart();
+        });
+        Globals.menuBar.getMenus().addAll(fileMenu);
+    }
 }

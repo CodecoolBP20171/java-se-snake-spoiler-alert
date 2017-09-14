@@ -108,6 +108,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             Globals.gameLoop.stop();
             int length = getSnakeLength();
             Globals.gameObjects.clear();
+            pane.getChildren().add(Globals.menuBar);
             Display.displayGameOverMessage(length, pane);
         });
     }
