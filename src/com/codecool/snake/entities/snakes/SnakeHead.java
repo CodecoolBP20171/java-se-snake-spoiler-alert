@@ -5,8 +5,12 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.BabyFaceEnemy;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import java.util.ArrayList;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -23,8 +27,11 @@ public class SnakeHead extends GameEntity implements Animatable {
         tail = this;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
+        drawHealthDisplay();
 
         addPart(4);
+
+        Globals.snakeHeadEntity = this;
     }
 
     public void step() {
@@ -41,6 +48,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
 
+
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
             if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
@@ -54,6 +62,9 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
+            health = 0;
+            drawHealthDisplay();
+
             System.out.println("Game Over");
             Globals.gameLoop.stop();
         }
@@ -68,5 +79,41 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void changeHealth(int diff) {
         health += diff;
+        drawHealthDisplay();
+    }
+
+    private void drawHealthDisplay() {
+        clearHealthDisplay();
+        for (int i = 1; i <= 10; i++) {
+            ImageView healthBit = new ImageView();
+
+            if (i <= health / 10) {
+                healthBit.setImage(Globals.healthUnit);
+            }
+            else {
+                healthBit.setImage(Globals.healthEmpty);
+            }
+            healthBit.setX(i * 20);
+            healthBit.setY(20);
+            pane.getChildren().add(healthBit);
+        }
+    }
+
+    private void clearHealthDisplay() {
+        ArrayList<Node> toRemove = new ArrayList<>();
+        for (Node entity : pane.getChildren()) {
+            if (entity instanceof ImageView) {
+                ImageView entityImageView = (ImageView)entity;
+                if (entityImageView.getImage() == Globals.healthUnit || entityImageView.getImage() == Globals.healthEmpty)
+                    toRemove.add(entity);
+            }
+        }
+        for (Node healthBit : toRemove) {
+            pane.getChildren().remove(healthBit);
+        }
+    }
+
+    public Point2D getPlace() {
+        return new Point2D(getX(),getY());
     }
 }

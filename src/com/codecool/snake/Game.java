@@ -1,5 +1,7 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.enemies.BabyFaceEnemy;
+import com.codecool.snake.entities.enemies.EnemyFollow;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
@@ -7,21 +9,24 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
-
-    SnakeHead player;
-
     public Game() {
-        player = new SnakeHead(this, 500, 500);
+        new SnakeHead(this, 500, 500);
 
         new SimpleEnemy(this);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
+        new BabyFaceEnemy(this);
+        new BabyFaceEnemy(this);
+        new BabyFaceEnemy(this);
+        new BabyFaceEnemy(this);
 
         new SimplePowerup(this);
         new SimplePowerup(this);
         new SimplePowerup(this);
         new SimplePowerup(this);
+
+        new EnemyFollow(this);
     }
 
     public void start() {
@@ -30,7 +35,7 @@ public class Game extends Pane {
             switch (event.getCode()) {
                 case LEFT:  Globals.leftKeyDown  = true; break;
                 case RIGHT: Globals.rightKeyDown  = true; break;
-                case SPACE: player.shoot(); break;
+                case SPACE: Globals.snakeHeadEntity.shoot(); break;
             }
         });
 
