@@ -3,6 +3,7 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.event.EventType;
+import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -13,6 +14,7 @@ public class Globals {
 
     public static final double WINDOW_WIDTH = 1000;
     public static final double WINDOW_HEIGHT = 700;
+    public static MenuBar menuBar = new MenuBar();
 
     public static Image snakeHead = new Image("snake_head.png");
     public static Image snakeBody = new Image("snake_body.png");
