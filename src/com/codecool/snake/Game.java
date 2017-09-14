@@ -13,32 +13,14 @@ import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
     public Game() {
+        Globals.pane = this;
 
     }
 
-    public void spawnGameObjects() {
+    public void initSpawnGameObjects() {
         new SnakeHead(this, 500, 500);
-
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new BabyFaceEnemy(this);
-        new BabyFaceEnemy(this);
-        new BabyFaceEnemy(this);
-        new BabyFaceEnemy(this);
-
         new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-
-
-        new Battery(this);
-
-        new HealPowerup(this);
-
-        new EnemyFollow(this);
+        Globals.isTherePowerUp = false;
     }
 
     public void start() {
@@ -58,7 +40,8 @@ public class Game extends Pane {
                 case RIGHT: Globals.rightKeyDown  = false; break;
             }
         });
-        spawnGameObjects();
+
+        initSpawnGameObjects();
         Globals.gameLoop = new GameLoop();
         Globals.gameLoop.start();
     }
@@ -71,5 +54,7 @@ public class Game extends Pane {
         Globals.gameLoop.stop();
         start();
     }
+
+
 
 }

@@ -8,9 +8,12 @@ import javafx.scene.layout.Pane;
 //a powerup that adds laser ammunition
 public class Battery extends Powerup {
 
+    public static final int RESPAWNRATE = 2;
+
     public Battery(Pane pane) {
         super(pane);
         setImage(Globals.powerupBattery);
+        Globals.isTherePowerUp = true;
     }
 
     @Override
@@ -22,5 +25,11 @@ public class Battery extends Powerup {
     @Override
     public String getMessage() {
         return "Got laser charge :)";
+    }
+
+    @Override
+    public void destroy() {
+        Globals.isTherePowerUp = false;
+        super.destroy();
     }
 }

@@ -11,6 +11,7 @@ public class SimplePowerup extends Powerup {
     public SimplePowerup(Pane pane) {
         super(pane);
         setImage(Globals.powerupBerry);
+        Globals.isThereBerry = true;
     }
 
     @Override
@@ -22,5 +23,11 @@ public class SimplePowerup extends Powerup {
     @Override
     public String getMessage() {
         return "Got power-up :)";
+    }
+
+    @Override
+    public void destroy() {
+        Globals.isThereBerry = false;
+        super.destroy();
     }
 }
