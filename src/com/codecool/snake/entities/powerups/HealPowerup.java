@@ -13,8 +13,6 @@ public class HealPowerup extends Powerup {
     public HealPowerup(Pane pane) {
         super(pane);
         setImage(Globals.powerupHeal);
-        pane.getChildren().add(this);
-
         Globals.isTherePowerUp = true;
 
     }
