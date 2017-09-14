@@ -24,6 +24,7 @@ public class Globals {
     public static Image invisibleSnake = new Image("invisiblesnake.png");
     public static Image followEnemy = new Image("enemy_follow.png");
     //.. put here the other images you want to use
+    public static Image laser = new Image("laser.png");
 
     public static SnakeHead snakeHeadEntity;
 
