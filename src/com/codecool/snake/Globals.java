@@ -4,6 +4,8 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.event.EventType;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class Globals {
     public static Image laser = new Image("laser.png");
 
     public static SnakeHead snakeHeadEntity;
+    public static Text ammoText;
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;

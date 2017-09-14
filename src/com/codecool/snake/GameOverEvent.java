@@ -8,4 +8,5 @@ public class GameOverEvent extends Event {
     public GameOverEvent(EventType<? extends Event> eventType) {
         super(eventType);
     }
+
 }
