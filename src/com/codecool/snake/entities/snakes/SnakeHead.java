@@ -121,10 +121,10 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public void shoot() {
-        //if (laserCharge > 0) {
+        if (laserCharge > 0) {
             new Laser(pane, this);
-        //  laserCharge--;
-        //}
+          laserCharge--;
+        }
     }
 
     public void changeLaserCharge(int diff) {
