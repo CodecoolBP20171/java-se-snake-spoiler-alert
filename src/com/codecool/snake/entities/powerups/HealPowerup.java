@@ -4,10 +4,9 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.layout.Pane;
 
-import java.util.Random;
 
 // a powerup that restores 10 health
-public class HealPowerup extends SimplePowerup {
+public class HealPowerup extends Powerup {
 
     public HealPowerup(Pane pane) {
         super(pane);
