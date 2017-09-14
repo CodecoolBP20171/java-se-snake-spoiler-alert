@@ -5,6 +5,7 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.Laser;
 import com.codecool.snake.entities.enemies.BabyFaceEnemy;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -115,5 +116,12 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public Point2D getPlace() {
         return new Point2D(getX(),getY());
+    }
+
+    public void shoot() {
+        //if (laserCharge > 0) {
+            new Laser(pane, this);
+        //  laserCharge--;
+        //}
     }
 }
