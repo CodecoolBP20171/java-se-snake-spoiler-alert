@@ -2,6 +2,7 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.event.EventType;
 import javafx.scene.image.Image;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -44,6 +45,8 @@ public class Globals {
         newGameObjects = new LinkedList<>();
         oldGameObjects = new LinkedList<>();
     }
+
+    public static EventType<GameOverEvent> GAME_OVER = new EventType<>("GAME OVER");
 
     public static void addGameObject(GameEntity toAdd) {
         newGameObjects.add(toAdd);

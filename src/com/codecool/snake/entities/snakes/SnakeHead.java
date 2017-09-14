@@ -27,8 +27,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     private int health;
     private int laserCharge;
 
-    private EventType<GameOverEvent> GAME_OVER = new EventType<>("GAME OVER");
-
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
         setX(xc);
@@ -73,7 +71,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
-            this.fireEvent(new GameOverEvent(GAME_OVER));
+            this.fireEvent(new GameOverEvent(Globals.GAME_OVER));
         }
     }
 
@@ -140,7 +138,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     private void addGameOverHandler() {
-        getParent().addEventHandler(GAME_OVER, event -> {
+        getParent().addEventHandler(Globals.GAME_OVER, event -> {
             System.out.println("Game Over");
             Globals.gameLoop.stop();
             int length = getSnakeLength();

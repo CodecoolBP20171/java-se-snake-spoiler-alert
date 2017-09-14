@@ -67,6 +67,7 @@ public class Game extends Pane {
         for (GameEntity gameObject : Globals.getGameObjects()) {
             gameObject.destroy();
         }
+        this.getChildren().clear();
         Globals.gameLoop.stop();
         start();
     }
