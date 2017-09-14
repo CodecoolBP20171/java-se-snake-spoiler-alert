@@ -80,9 +80,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     private void drawHealthDisplay() {
-
-        //TODO greyed out hearts or something so we can see max health.
-
         clearHealthDisplay();
         for (int i = 1; i <= 10; i++) {
             ImageView healthBit = new ImageView();
@@ -102,9 +99,11 @@ public class SnakeHead extends GameEntity implements Animatable {
     private void clearHealthDisplay() {
         ArrayList<Node> toRemove = new ArrayList<>();
         for (Node entity : pane.getChildren()) {
-            if (entity instanceof ImageView)
-                if (((ImageView) entity).getImage() == Globals.healthUnit)
+            if (entity instanceof ImageView) {
+                ImageView entityImageView = (ImageView)entity;
+                if (entityImageView.getImage() == Globals.healthUnit || entityImageView.getImage() == Globals.healthEmpty)
                     toRemove.add(entity);
+            }
         }
         for (Node healthBit : toRemove) {
             pane.getChildren().remove(healthBit);
