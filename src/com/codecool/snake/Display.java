@@ -33,7 +33,7 @@ public class Display {
                 healthBit.setImage(Globals.healthEmpty);
             }
             healthBit.setX(i * 20);
-            healthBit.setY(20);
+            healthBit.setY(40);
             pane.getChildren().add(healthBit);
         }
     }
@@ -53,7 +53,7 @@ public class Display {
     }
 
     public static void drawAmmoDisplay(Pane pane, int laserCharge) {
-        Globals.ammoText = new Text(20, 60, "Laser ammo: " + laserCharge);
+        Globals.ammoText = new Text(20, 80, "Laser ammo: " + laserCharge);
         Globals.ammoText.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         Globals.ammoText.setFill(Color.rgb(1, 61, 181));
         pane.getChildren().add(Globals.ammoText);
