@@ -147,7 +147,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         });
     }
 
-    private int getSnakeLength() {
+    public int getSnakeLength() {
         int length = 1;
 
         for (GameEntity entity : Globals.gameObjects) {

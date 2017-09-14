@@ -19,19 +19,7 @@ public class Game extends Pane {
 
     public void initSpawnGameObjects() {
         new SnakeHead(this, 500, 500);
-
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new BabyFaceEnemy(this);
-        new BabyFaceEnemy(this);
-        new BabyFaceEnemy(this);
-        new BabyFaceEnemy(this);
-        new EnemyFollow(this);
-
         new SimplePowerup(this);
-
         Globals.isTherePowerUp = false;
     }
 

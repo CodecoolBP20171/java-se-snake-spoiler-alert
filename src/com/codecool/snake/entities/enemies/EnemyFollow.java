@@ -9,6 +9,8 @@ import javafx.scene.layout.Pane;
 
 public class EnemyFollow extends Enemy {
 
+    public static final int RESPAWNRATE = 2;
+
     public EnemyFollow(Pane pane) {
         super(pane);
         setImage(Globals.followEnemy);
