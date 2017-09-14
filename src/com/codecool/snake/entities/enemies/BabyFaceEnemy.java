@@ -31,6 +31,7 @@ public class BabyFaceEnemy extends Enemy {
     public void apply(SnakeHead snakeHead) {
         destroy();
         snakeHead.setImage(Globals.invisibleSnake);
+        Globals.isInvisible = true;
 
         for (GameEntity entity : Globals.getGameObjects()) {
             if (entity instanceof SnakeBody) {
@@ -42,6 +43,7 @@ public class BabyFaceEnemy extends Enemy {
                     @Override
                     public void run() {
                         snakeHead.setImage(Globals.snakeHead);
+                        Globals.isInvisible = false;
                         for (GameEntity entity : Globals.getGameObjects()) {
                             if (entity instanceof SnakeBody) {
                                 entity.setImage(Globals.snakeBody);

@@ -36,6 +36,7 @@ public class Globals {
     public static Image laser = new Image("laser.png");
 
     public static SnakeHead snakeHeadEntity;
+    public static boolean isInvisible;
     static Text ammoText;
 
     public static boolean leftKeyDown;
