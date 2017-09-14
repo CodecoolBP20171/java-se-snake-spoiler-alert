@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 
 
 public class BabyFaceEnemy extends Enemy {
-
+  
     public static final int RESPAWNRATE = 1;
 
     public BabyFaceEnemy(Pane pane) {

@@ -6,6 +6,8 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.event.EventType;
 import com.codecool.snake.entities.Laser;
 import com.codecool.snake.entities.enemies.BabyFaceEnemy;
@@ -26,6 +28,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
     private int laserCharge;
+    private Text ammoText;
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -37,6 +40,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
         drawHealthDisplay();
+        drawAmmoDisplay();
 
         addPart(4);
         addGameOverHandler();
@@ -125,12 +129,24 @@ public class SnakeHead extends GameEntity implements Animatable {
     public void shoot() {
         if (laserCharge > 0) {
             new Laser(pane, this);
-          laserCharge--;
+            changeLaserCharge(-1);
         }
+    }
+
+    private void drawAmmoDisplay() {
+        ammoText = new Text(20, 60, "Laser ammo: " + laserCharge);
+        ammoText.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
+        ammoText.setFill(Color.rgb(1, 61, 181));
+        pane.getChildren().add(ammoText);
+    }
+
+    private void refreshAmmoDisplay() {
+        ammoText.setText("Laser ammo: " + laserCharge);
     }
 
     public void changeLaserCharge(int diff) {
         laserCharge += diff;
+        refreshAmmoDisplay();
     }
 
     public int getLaserCharge() {
@@ -138,23 +154,23 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     private void addGameOverHandler() {
-        getParent().addEventHandler(Globals.GAME_OVER, event -> {
-            System.out.println("Game Over");
-            Globals.gameLoop.stop();
-            int length = getSnakeLength();
-            Globals.gameObjects.clear();
-            displayGameOverMessage(length);
-        });
+        addEventHandler(Globals.GAME_OVER, gameOverHandler);
     }
 
-    public int getSnakeLength() {
+    public EventHandler gameOverHandler = event -> {
+        System.out.println("Game Over");
+        Globals.gameLoop.stop();
+        int length = getSnakeLength();
+        Globals.gameObjects.clear();
+        displayGameOverMessage(length);
+    };
+    
+    private int getSnakeLength() {
         int length = 1;
-
         for (GameEntity entity : Globals.gameObjects) {
             if (entity instanceof SnakeBody)
                 length++;
         }
-
         return length;
     }
 
@@ -165,5 +181,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         gameOverText.setFill(Color.RED);
         pane.getChildren().clear();
         pane.getChildren().add(gameOverText);
+    }
+
+    public int getHealth() {
+        return health;
     }
 }
