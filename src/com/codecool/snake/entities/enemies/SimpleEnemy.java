@@ -23,9 +23,14 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         setImage(Globals.simpleEnemy);
         pane.getChildren().add(this);
         int speed = 1;
+
+        //make sure they don't spawn on the player
         Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        SnakeHead player = Globals.snakeHeadEntity;
+        do {
+            setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
+            setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        } while (getBoundsInParent().intersects(player.getBoundsInParent()));
 
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
