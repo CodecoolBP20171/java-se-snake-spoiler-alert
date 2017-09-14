@@ -26,6 +26,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
     private int laserCharge;
+    private Text ammoText;
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -37,6 +38,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
         drawHealthDisplay();
+        drawAmmoDisplay();
 
         addPart(4);
         addGameOverHandler();
@@ -125,12 +127,24 @@ public class SnakeHead extends GameEntity implements Animatable {
     public void shoot() {
         if (laserCharge > 0) {
             new Laser(pane, this);
-          laserCharge--;
+            changeLaserCharge(-1);
         }
+    }
+
+    private void drawAmmoDisplay() {
+        ammoText = new Text(20, 60, "Laser ammo: " + laserCharge);
+        ammoText.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
+        ammoText.setFill(Color.rgb(1, 61, 181));
+        pane.getChildren().add(ammoText);
+    }
+
+    private void refreshAmmoDisplay() {
+        ammoText.setText("Laser ammo: " + laserCharge);
     }
 
     public void changeLaserCharge(int diff) {
         laserCharge += diff;
+        refreshAmmoDisplay();
     }
 
     public int getLaserCharge() {
