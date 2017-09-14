@@ -1,13 +1,11 @@
 package com.codecool.snake.entities.enemies;
 
 import com.codecool.snake.Globals;
-import com.codecool.snake.entities.Animatable;
-import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.layout.Pane;
 
 
-public class SimpleEnemy extends Enemy implements Animatable, Interactable {
+public class SimpleEnemy extends Enemy {
 
     public SimpleEnemy(Pane pane) {
         super(pane);
