@@ -184,4 +184,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         pane.getChildren().clear();
         pane.getChildren().add(gameOverText);
     }
+
+    public int getHealth() {
+        return health;
+    }
 }
