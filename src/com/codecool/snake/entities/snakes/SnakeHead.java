@@ -6,6 +6,8 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.event.EventType;
 import com.codecool.snake.entities.Laser;
 import com.codecool.snake.entities.enemies.BabyFaceEnemy;
@@ -152,15 +154,17 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     private void addGameOverHandler() {
-        getParent().addEventHandler(Globals.GAME_OVER, event -> {
-            System.out.println("Game Over");
-            Globals.gameLoop.stop();
-            int length = getSnakeLength();
-            Globals.gameObjects.clear();
-            displayGameOverMessage(length);
-        });
+        addEventHandler(Globals.GAME_OVER, gameOverHandler);
     }
 
+    public EventHandler gameOverHandler = event -> {
+        System.out.println("Game Over");
+        Globals.gameLoop.stop();
+        int length = getSnakeLength();
+        Globals.gameObjects.clear();
+        displayGameOverMessage(length);
+    };
+    
     private int getSnakeLength() {
         int length = 1;
 
